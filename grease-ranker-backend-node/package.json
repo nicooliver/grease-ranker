@@ -1,0 +1,21 @@
+{
+    "name": "mc-getter",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint .  --ext .js",
+        "lint-fix": "eslint --fix .  --ext .js"
+    },
+    "author": "nicooliver",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.18.1",
+        "node-fetch": "^2.6.7"
+    },
+    "devDependencies": {
+        "eslint": "^8.16.0"
+    }
+}
