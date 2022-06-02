@@ -61,6 +61,14 @@
               ],
               "outputHashing": "all"
             },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -77,6 +85,9 @@
           "configurations": {
             "production": {
               "browserTarget": "grease-ranker-frontend:build:production"
+            },
+            "staging": {
+              "browserTarget": "grease-ranker-frontend:build:staging"
             },
             "development": {
               "browserTarget": "grease-ranker-frontend:build:development"
