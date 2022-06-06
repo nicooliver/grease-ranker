@@ -1,9 +1,16 @@
 <div class="card" style="width: 18rem;">
+  <img src="{{product.imageUrl}}" class="card-img-top negativ-margin" alt="Image">
   <div class="card-body">
-    <h5 class="card-title">#{{product.rank}} {{product.name}}</h5>
+    <h5 class="card-title pb-3 text-center">#{{product.rank}} {{product.name}}</h5>
+    <div class="d-flex justify-content-center">
+      <div class="d-flex flex-column align-items-center border-end pe-4">
+        <p class="mb-0 mt-1">Kalorien</p>
+        <p class="mb-2">{{product.calories}}</p>
+      </div>
+      <div class="d-flex flex-column align-items-center ps-4">
+        <p class="mb-0 mt-1">Protein</p>
+        <p class="mb-2">{{product.protein}}</p>
+      </div>
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{product.kcal}}</li>
-    <li class="list-group-item">{{product.protein}}</li>
-  </ul>
 </div>

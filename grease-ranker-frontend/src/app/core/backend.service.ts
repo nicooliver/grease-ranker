@@ -14,6 +14,6 @@ export class BackendService {
   private baseUrl = environment.apiUrl;
 
   public getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}ranking`);
+    return this.http.get<Product[]>(`${this.baseUrl}McDonalds`);
   }
 }
