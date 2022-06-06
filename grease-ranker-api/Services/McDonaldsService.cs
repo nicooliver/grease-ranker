@@ -1,6 +1,7 @@
 ﻿using grease_ranker_api.DTOs;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Net;
 using System.Text.RegularExpressions;
 
 namespace grease_ranker_api.Services
@@ -72,9 +73,8 @@ namespace grease_ranker_api.Services
 
             string name = rName.Match(html).Groups["name"].ToString()
                 .Replace("<br>", " ")
-                .Replace("&#8222;", "'")
-                .Replace("&#8220;", "'")
-                .Replace("&#038;", "&");
+                .Replace("-<p>", "-")
+                .Replace("<p>", " ");
             string content = rContent.Match(html).Groups["content"].ToString();
 
             try
@@ -125,7 +125,7 @@ namespace grease_ranker_api.Services
             using var client = new HttpClient();
             using HttpResponseMessage response = client.GetAsync(productsUrl).Result;
             using HttpContent content = response.Content;
-            return await content.ReadAsStringAsync();
+            return WebUtility.HtmlDecode(await content.ReadAsStringAsync());
         }
     }
 }
