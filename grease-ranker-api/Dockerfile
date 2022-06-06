@@ -1,17 +1,23 @@
-# syntax=docker/dockerfile:1
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-focal AS base
 WORKDIR /app
 
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
+EXPOSE 7063
 
-# Copy everything else and build
-#COPY ../engine/examples ./
-RUN dotnet publish -c Release -o out
+FROM mcr.microsoft.com/dotnet/sdk:5.0-focal AS build
+WORKDIR /src
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+COPY ["aspdockerapi.csproj", "./"]
+RUN dotnet restore "./aspdockerapi.csproj"
+
+COPY . .
+WORKDIR "/src/."
+
+RUN dotnet build "aspdockerapi.csproj" -c Release -o /app/build
+FROM build AS publish
+
+RUN dotnet publish "aspdockerapi.csproj" -c Release -o /app/publish
+FROM base AS final
+
 WORKDIR /app
-COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "grease-ranker-api.dll"]
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "aspdockerapi.dll"]
