@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { McDonaldsComponent } from './pages/mc-donalds/mc-donalds.component';
 import { BurgerKingComponent } from './pages/burger-king/burger-king.component';
 import { CoreModule } from './core/core.module';
-import { ProductCardComponent } from './shared/product-card/product-card.component';
 import { SharedModule } from './shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
