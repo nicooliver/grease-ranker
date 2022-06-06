@@ -72,6 +72,8 @@ namespace grease_ranker_api.Services
 
             string name = rName.Match(html).Groups["name"].ToString()
                 .Replace("<br>", " ")
+                .Replace("&#8222;", "'")
+                .Replace("&#8220;", "'")
                 .Replace("&#038;", "&");
             string content = rContent.Match(html).Groups["content"].ToString();
 
@@ -127,56 +129,3 @@ namespace grease_ranker_api.Services
         }
     }
 }
-/*
-
-const getProducts = async(urls) => {
-    let products = [];
-
-    for (const u of urls) {
-        let p = await getProductByUrl(u);
-        if (!p.mn || p.mn === -1 || p.protein <= 0) continue;
-        if (products.find(x => x.name === p.name)) continue;
-
-        console.log('Adding: ', p.name);
-        products.push(p);
-    }
-
-    products.sort((a, b) => a.mn - b.mn);
-    return products;
-};
-
-const getProductByUrl = async(url) => {
-    const name = url.split('/').pop();
-
-    const isBad = excludes.some(x => name.includes(x));
-    if (isBad) return createEmptyProduct();
-
-    try {
-        let html = await getHtmlByUrl(url);
-        html = html.replace(/[\n\t]/g, '');
-
-        const content = rContent.exec(html).groups.content;
-
-        const kcal = +rKcal.exec(content).groups.kcal;
-        const protein = +rProtein.exec(content).groups.protein;
-        const mn = Math.round((kcal / protein) * 100) / 100;
-
-        return createProduct(name, kcal, protein, mn);
-    } catch (ex) {
-        console.error('Error at: ', url);
-        return createEmptyProduct();
-    }
-};
-
-const createEmptyProduct = () => createProduct(null, null, null, null);
-
-const createProduct = (name, kcal, protein, mn) => {
-    return {
-        name: name,
-        kcal: kcal,
-        protein: protein,
-        mn: mn,
-    };
-};
-
- */
