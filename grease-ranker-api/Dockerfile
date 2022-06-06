@@ -6,18 +6,18 @@ EXPOSE 7063
 FROM mcr.microsoft.com/dotnet/sdk:5.0-focal AS build
 WORKDIR /src
 
-COPY ["aspdockerapi.csproj", "./"]
-RUN dotnet restore "./aspdockerapi.csproj"
+COPY ["grease-ranker-api.csproj", "./"]
+RUN dotnet restore "./grease-ranker-api.csproj"
 
 COPY . .
 WORKDIR "/src/."
 
-RUN dotnet build "aspdockerapi.csproj" -c Release -o /app/build
+RUN dotnet build "grease-ranker-api.csproj" -c Release -o /app/build
 FROM build AS publish
 
-RUN dotnet publish "aspdockerapi.csproj" -c Release -o /app/publish
+RUN dotnet publish "grease-ranker-api.csproj" -c Release -o /app/publish
 FROM base AS final
 
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "aspdockerapi.dll"]
+ENTRYPOINT ["dotnet", "grease-ranker-api.dll"]
