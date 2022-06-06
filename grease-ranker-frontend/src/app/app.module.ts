@@ -7,7 +7,6 @@ import { McDonaldsComponent } from './pages/mc-donalds/mc-donalds.component';
 import { BurgerKingComponent } from './pages/burger-king/burger-king.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { RouterModule } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
