@@ -8,12 +8,14 @@ import { BurgerKingComponent } from './pages/burger-king/burger-king.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     McDonaldsComponent,
-    BurgerKingComponent
+    BurgerKingComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
