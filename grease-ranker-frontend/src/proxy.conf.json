@@ -1,0 +1,7 @@
+{
+  "/api/McDonalds": {
+    "target": "https://localhost:7063",
+    "changeOrigin": true,
+    "secure": false
+  }
+}

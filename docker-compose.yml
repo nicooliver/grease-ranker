@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  backend:
+    image: nicooliver/grease-ranker-backend
+    ports:
+      - "7063:7063"
+
+  frontend:
+    image: nicooliver/grease-ranker-frontend
+    ports:
+      - "5000:80"
+
+networks:
+  default:
+    name: greasework
